@@ -1,0 +1,33 @@
+# ============================================================
+# Hotel Aurora — .gitignore
+# ============================================================
+
+# --- Carpetas de compilación (nunca van a Git) ---
+bin/
+obj/
+.vs/
+
+# --- Archivos de usuario/IDE ---
+*.user
+*.suo
+*.cache
+*.pidb
+*.userprefs
+*.DS_Store
+Thumbs.db
+
+# --- SEGURIDAD: Web.config contiene la contraseña de la BD ---
+# Usa Web.config.example como plantilla y cópialo localmente.
+02_Sistema/Web.config
+
+# --- Paquetes NuGet restaurados localmente ---
+02_Sistema/bin/MySql.Data.dll
+packages/
+
+# --- Archivos temporales de pruebas ---
+04_Pruebas/TestResults/
+
+# --- Logs y temporales de Windows ---
+*.log
+*.tmp
+*.bak

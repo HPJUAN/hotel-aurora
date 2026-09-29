@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  PLANTILLA DE CONFIGURACIÓN — Hotel Aurora                  ║
+  ║  Copia este archivo a Web.config y rellena tus datos reales. ║
+  ║  NUNCA subas Web.config con contraseñas reales a Git.       ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+  Pasos para ejecutar el proyecto localmente:
+  1. Copia este archivo:  Web.config.example  →  Web.config
+  2. Reemplaza los valores entre <  > con tus datos reales de MySQL.
+  3. Web.config ya está en .gitignore; nunca se subirá al repositorio.
+-->
+<configuration>
+  <appSettings>
+    <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
+  </appSettings>
+
+  <connectionStrings>
+    <!--
+      Ejemplo alwaysdata:
+        Server  = mysql-TUUSUARIO.alwaysdata.net
+        Port    = 3306
+        Database= TUUSUARIO_hotel   (el nombre exacto de tu base en alwaysdata)
+        Uid     = TUUSUARIO_
+        Pwd     = TU_CLAVE
+    -->
+    <add name="HotelDb"
+         connectionString="Server=mysql-TUUSUARIO.alwaysdata.net;Port=3306;Database=TUUSUARIO_hotel;Uid=TUUSUARIO_;Pwd=TU_CLAVE;SslMode=none;AllowPublicKeyRetrieval=True;CharSet=utf8mb4;"
+         providerName="MySql.Data.MySqlClient" />
+  </connectionStrings>
+
+  <system.web>
+    <!-- En desarrollo local usa debug="true". En producción: debug="false". -->
+    <compilation debug="true" targetFramework="4.7.2" />
+    <httpRuntime targetFramework="4.7.2" maxRequestLength="4096" />
+    <globalization culture="es-BO" uiCulture="es-BO"
+                   requestEncoding="utf-8" responseEncoding="utf-8" fileEncoding="utf-8" />
+    <pages controlRenderingCompatibilityVersion="4.0" />
+    <customErrors mode="RemoteOnly" defaultRedirect="~/Error.aspx" />
+  </system.web>
+</configuration>
