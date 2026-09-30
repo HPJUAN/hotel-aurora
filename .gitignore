@@ -20,6 +20,10 @@ Thumbs.db
 # Usa Web.config.example como plantilla y cópialo localmente.
 02_Sistema/Web.config
 
+# --- Archivos de publicación generados por Visual Studio ---
+02_Sistema/App_Data/
+02_Sistema/website.publishproj
+
 # --- Paquetes NuGet restaurados localmente ---
 02_Sistema/bin/MySql.Data.dll
 packages/
