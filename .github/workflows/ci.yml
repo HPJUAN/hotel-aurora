@@ -1,0 +1,38 @@
+# Integración continua — Hotel Aurora
+# Ejecuta en cada push y pull request a main o develop.
+# Qué hace: restaura dependencias, compila y corre los 37 tests unitarios.
+#
+# Notas de compatibilidad:
+# - El sitio web (02_Sistema) es ASP.NET Web Forms .NET Framework 4.7.2
+#   y NO tiene .csproj, por lo que no se compila aquí (requeriría Windows + MSBuild).
+# - Las PRUEBAS (04_Pruebas/Hotel.Pruebas.csproj) usan net8.0 y son
+#   multiplataforma: solo prueban Reglas.cs (código puro, sin ASP.NET).
+# - La compilación completa del sitio se verifica localmente con Visual Studio.
+
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  pruebas-unitarias:
+    name: "Pruebas NUnit (Reglas de negocio puras)"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restaurar dependencias
+        run: dotnet restore 04_Pruebas/Hotel.Pruebas.csproj
+
+      - name: Ejecutar pruebas unitarias
+        run: dotnet test 04_Pruebas/Hotel.Pruebas.csproj --verbosity normal --no-restore
